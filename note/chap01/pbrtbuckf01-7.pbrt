@@ -1,0 +1,55 @@
+
+LookAt 0 5 3   0 0 0   0 0 1
+Camera "perspective" "float fov" [39]
+Film "image"  
+"integer xresolution" [800] "integer yresolution" [600]
+    "string filename" "pbrtbuckf01-7.exr"
+
+Sampler "halton" "integer pixelsamples" [8]
+
+Integrator "sppm" "integer iterations" [6]
+#Integrator "whitted"
+
+WorldBegin
+
+AttributeBegin
+Translate 2 2  2
+LightSource "point"  "color I" [55 55 55]
+AttributeEnd
+
+
+AttributeBegin
+	Texture "lines" "color" "imagemap" "string filename" "textures/lines.exr"
+  Material "matte" "texture Kd" "lines"
+  Translate 0 0 -2
+Shape "trianglemesh" "point P" [ -20 -20 0 20 -20 0 20 20 0 -20 20 0 ]
+      "float uv" [ 0 0 5 0 5 5 0 5 ]
+	"integer indices" [ 0 1 2 2 3 0]
+AttributeEnd
+
+AttributeBegin
+	Texture "lines" "color" "imagemap" "string filename" "textures/lines.exr"
+  Material "matte" "texture Kd" "lines"
+  Translate 0 0 5
+Shape "trianglemesh" "point P" [ -20 -20 0 20 -20 0 20 20 0 -20 20 0 ]
+      "float uv" [ 0 0 5 0 5 5 0 5 ]
+	"integer indices" [ 0 2 1 2 0 3]
+AttributeEnd
+
+#Material "plastic" "color Kd" [.4 .2 .2] "color Ks" [.5 .5 .5]
+AttributeBegin
+	Material "glass"
+	Translate 0 0  0
+	Shape "sphere" "float radius" [0.5]
+AttributeEnd
+AttributeBegin
+	Material "glass"
+	Translate -0.5 1  0
+	Shape "sphere" "float radius" [0.5]
+AttributeEnd
+AttributeBegin
+	Material "glass"
+	Translate 0.5 1  0
+	Shape "sphere" "float radius" [0.5]
+AttributeEnd
+WorldEnd

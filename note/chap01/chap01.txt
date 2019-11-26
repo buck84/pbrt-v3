@@ -1,0 +1,25 @@
+notes:
+1.pbrt描述文件中camera的xyz朝向选择比较麻烦，examples中也各有不同，考虑到书中第三章中的情况与ue4中相同，所以使用x右z上的左手坐标系统
+
+2.
+1.3.5中white积分器对每个light，先计算Li，再判断是否遮挡，不符合直观，是因为计算Li比较简单，是否遮挡判断比较复杂。
+
+3.
+调试过程中第一个执行的是左上角信息，可以将想调试的内容放在渲染的左上角进行调试，调试命令添加--nthreads 1
+
+4.
+第一次看肯定看的头大，细节不必在意，只需要知道大致思路即可：从摄像机生成光线，以一定方式追踪场景中物体和光源并计算亮度。
+
+5.
+luxrender.org有空可以看下，pbrt为基础开发的
+
+
+
+Samples
+pbrtbuckf01-7.pbrt
+通过下面注释切换两种积分模式
+Integrator "sppm" "integer iterations" [6]
+#Integrator "whitted"
+
+pbrtbuck01-3-5.pbrt
+大致看一下即可，不必在意具体渲染结果，具体渲染结果可以再看完material和light以后再调参数看
