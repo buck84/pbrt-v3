@@ -1,0 +1,3 @@
+notes:
+1.
+AttributeBegin/AttributeEnd中间的transform变换过程，先使用最后面的，然后依次向前，因为transform不满足交换律，所以了解这个很重要
