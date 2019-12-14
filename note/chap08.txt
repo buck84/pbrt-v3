@@ -1,0 +1,1 @@
+BxDF::Sample_f中判断wo.z<0，一个用处是比如path integer中采样反射路线使用
