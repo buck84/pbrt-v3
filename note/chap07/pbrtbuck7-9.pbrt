@@ -1,0 +1,110 @@
+
+LookAt 2 3 1   -2 -5 0   0 0 1
+#Camera "perspective" 
+Camera "realistic" 
+	"string lensfile" "lenses/wide.22mm.dat" 
+	"string lensfile" "lenses/fisheye.10mm.dat" 
+	"float aperturediameter" 5.5
+        "float focusdistance" 0.55
+
+Film "image"  
+"integer xresolution" [800] "integer yresolution" [600]
+    "string filename" "pbrtbuck7-9.exr"
+
+Sampler "halton" "integer pixelsamples" [8]
+
+Integrator "whitted"
+
+WorldBegin
+
+AttributeBegin
+Translate 0 10  15
+LightSource "point"  "color I" [2500 2500 2500]
+AttributeEnd
+
+AttributeBegin
+	Texture "lines" "color" "imagemap" "string filename" "textures/lines.exr"
+MakeNamedMaterial "Texture1" "string type" "matte" "texture Kd" "lines"
+MakeNamedMaterial "Scale1" "string type" "matte" "color Kd" [0.1 0.1 0.1]
+Material "mix" "string namedmaterial1" "Texture1" "string namedmaterial2" "Scale1" "rgb amount" [0.3 0.3 0.3]
+#Material "matte"  "color Kd" [0.1 0.1 0.1]
+	Translate 0 0 -2
+Shape "trianglemesh" "point P" [ -20 -40 0 20 -40 0 20 0 0 -20 0 0 ]
+      "float uv" [ 0 0 2 0 2 2 0 2 ]
+	"integer indices" [ 0 1 2 2 3 0]
+AttributeEnd
+
+AttributeBegin
+    Material "plastic" "color Kd" [.4 .2 .2] "color Ks" [.5 .5 .5]
+	Translate 0 1  0
+	Shape "sphere" "float radius" [0.3]
+AttributeEnd
+
+AttributeBegin
+    Material "plastic" "color Kd" [.4 .2 .2] "color Ks" [.5 .5 .5]
+	Translate 0 0  0
+	Shape "sphere" "float radius" [0.3]
+AttributeEnd
+
+AttributeBegin
+    Material "plastic" "color Kd" [.4 .2 .2] "color Ks" [.5 .5 .5]
+	Translate 0 -1  0
+	Shape "sphere" "float radius" [0.3]
+AttributeEnd
+
+AttributeBegin
+    Material "plastic" "color Kd" [.4 .2 .2] "color Ks" [.5 .5 .5]
+	Translate 0 -2  0
+	Shape "sphere" "float radius" [0.3]
+AttributeEnd
+
+AttributeBegin
+    Material "plastic" "color Kd" [.4 .2 .2] "color Ks" [.5 .5 .5]
+	Translate 0 -3  0
+	Shape "sphere" "float radius" [0.3]
+AttributeEnd
+
+AttributeBegin
+    Material "plastic" "color Kd" [.4 .2 .2] "color Ks" [.5 .5 .5]
+	Translate 0 -4  0
+	Shape "sphere" "float radius" [0.3]
+AttributeEnd
+
+AttributeBegin
+    Material "plastic" "color Kd" [.4 .2 .2] "color Ks" [.5 .5 .5]
+	Translate 0 -5  0
+	Shape "sphere" "float radius" [0.3]
+AttributeEnd
+
+AttributeBegin
+    Material "plastic" "color Kd" [.4 .2 .2] "color Ks" [.5 .5 .5]
+	Translate 0 -6  0
+	Shape "sphere" "float radius" [0.3]
+AttributeEnd
+
+AttributeBegin
+    Material "plastic" "color Kd" [.4 .2 .2] "color Ks" [.5 .5 .5]
+	Translate 0 -7  0
+	Shape "sphere" "float radius" [0.3]
+AttributeEnd
+
+AttributeBegin
+    Material "plastic" "color Kd" [.4 .2 .2] "color Ks" [.5 .5 .5]
+	Translate 0 -8  0
+	Shape "sphere" "float radius" [0.3]
+AttributeEnd
+
+AttributeBegin
+    Material "plastic" "color Kd" [.4 .2 .2] "color Ks" [.5 .5 .5]
+	Translate 0 -9  0
+	Shape "sphere" "float radius" [0.3]
+AttributeEnd
+
+AttributeBegin
+    Material "plastic" "color Kd" [.4 .2 .2] "color Ks" [.5 .5 .5]
+	Translate 0 -10  0
+	Shape "sphere" "float radius" [0.3]
+AttributeEnd
+
+WorldEnd
+

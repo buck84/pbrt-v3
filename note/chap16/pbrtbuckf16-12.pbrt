@@ -1,0 +1,133 @@
+
+LookAt 0 15 0  0 0 0   0 0 1
+Camera "perspective" 
+
+Film "image"  
+"integer xresolution" [800] "integer yresolution" [600]
+    "string filename" "pbrtbuckf16-12.exr"
+
+Sampler "halton" "integer pixelsamples" [88]
+
+Integrator "bdpt"
+
+WorldBegin
+
+AttributeBegin
+Translate 0 0  9
+LightSource "point"  "color I" [2500 2500 2500]
+AttributeEnd
+
+	Texture "lines" "color" "imagemap" "string filename" "textures/lines.exr"
+MakeNamedMaterial "Texture1" "string type" "matte" "texture Kd" "lines"
+MakeNamedMaterial "Scale1" "string type" "matte" "color Kd" [0.1 0.1 0.1]
+MakeNamedMaterial "Room" "string type" "mix"  "string namedmaterial1" "Texture1" "string namedmaterial2" "Scale1" "rgb amount" [0.3 0.3 0.3]
+
+#Bottom
+AttributeBegin
+	Material "matte" "color Kd" [5 5 5]
+	Translate 0 0 7.5
+	Shape "trianglemesh" "point P" [ -1 -1 0 1 -1 0 1 1 0 -1 1 0 ]
+      "float uv" [ 0 0 2 0 2 2 0 2 ]
+	"integer indices" [ 0 1 2 2 3 0]
+AttributeEnd
+
+#Front
+AttributeBegin
+	Material "matte" "color Kd" [5 5 5]
+	Translate 0 -1 8.5
+	Rotate 90 1 0 0
+	Shape "trianglemesh" "point P" [ -1 -1 0 1 -1 0 1 1 0 -1 1 0 ]
+      "float uv" [ 0 0 2 0 2 2 0 2 ]
+	"integer indices" [ 0 1 2 2 3 0]
+AttributeEnd
+
+#Back
+AttributeBegin
+	Material "matte" "color Kd" [5 5 5]
+	Translate 0 1 8.5
+	Rotate -90 1 0 0
+	Shape "trianglemesh" "point P" [ -1 -1 0 1 -1 0 1 1 0 -1 1 0 ]
+      "float uv" [ 0 0 2 0 2 2 0 2 ]
+	"integer indices" [ 0 1 2 2 3 0]
+AttributeEnd
+
+#Left
+AttributeBegin
+	Material "matte" "color Kd" [5 5 5]
+	Translate -1 0 8.5
+	Rotate -90 0 1 0
+	Shape "trianglemesh" "point P" [ -1 -1 0 1 -1 0 1 1 0 -1 1 0 ]
+      "float uv" [ 0 0 2 0 2 2 0 2 ]
+	"integer indices" [ 0 1 2 2 3 0]
+AttributeEnd
+
+#Right
+AttributeBegin
+	Material "matte" "color Kd" [5 5 5]
+	Translate 1 0 8.5
+	Rotate 90 0 1 0
+	Shape "trianglemesh" "point P" [ -1 -1 0 1 -1 0 1 1 0 -1 1 0 ]
+      "float uv" [ 0 0 2 0 2 2 0 2 ]
+	"integer indices" [ 0 1 2 2 3 0]
+AttributeEnd
+
+
+
+
+
+
+
+
+
+#Bottom
+AttributeBegin
+	Material "mix" "string namedmaterial1" "Texture1" "string namedmaterial2" "Scale1" "rgb amount" [0.3 0.3 0.3]
+	Translate 0 0 -10
+	Shape "trianglemesh" "point P" [ -10 -10 0 10 -10 0 10 10 0 -10 10 0 ]
+      "float uv" [ 0 0 2 0 2 2 0 2 ]
+	"integer indices" [ 0 1 2 2 3 0]
+AttributeEnd
+
+#Up
+AttributeBegin
+	Material "mix" "string namedmaterial1" "Texture1" "string namedmaterial2" "Scale1" "rgb amount" [0.3 0.3 0.3]
+	Translate 0 0 10
+	Rotate 180 1 0 0
+	Shape "trianglemesh" "point P" [ -10 -10 0 10 -10 0 10 10 0 -10 10 0 ]
+      "float uv" [ 0 0 2 0 2 2 0 2 ]
+	"integer indices" [ 0 1 2 2 3 0]
+AttributeEnd
+
+#Front
+AttributeBegin
+	Material "mix" "string namedmaterial1" "Texture1" "string namedmaterial2" "Scale1" "rgb amount" [0.3 0.3 0.3]
+	Translate 0 -10 0
+	Rotate 90 1 0 0
+	Shape "trianglemesh" "point P" [ -10 -10 0 10 -10 0 10 10 0 -10 10 0 ]
+      "float uv" [ 0 0 2 0 2 2 0 2 ]
+	"integer indices" [ 0 1 2 2 3 0]
+AttributeEnd
+
+#Left
+AttributeBegin
+	Material "mix" "string namedmaterial1" "Texture1" "string namedmaterial2" "Scale1" "rgb amount" [0.3 0.3 0.3]
+	Translate -10 0 0
+	Rotate -90 0 1 0
+	Shape "trianglemesh" "point P" [ -10 -10 0 10 -10 0 10 10 0 -10 10 0 ]
+      "float uv" [ 0 0 2 0 2 2 0 2 ]
+	"integer indices" [ 0 1 2 2 3 0]
+AttributeEnd
+
+#Right
+AttributeBegin
+	Material "mix" "string namedmaterial1" "Texture1" "string namedmaterial2" "Scale1" "rgb amount" [0.3 0.3 0.3]
+	Translate 10 0 0
+	Rotate 90 0 1 0
+	Shape "trianglemesh" "point P" [ -10 -10 0 10 -10 0 10 10 0 -10 10 0 ]
+      "float uv" [ 0 0 2 0 2 2 0 2 ]
+	"integer indices" [ 0 1 2 2 3 0]
+AttributeEnd
+
+
+WorldEnd
+
