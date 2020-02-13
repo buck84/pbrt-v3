@@ -329,7 +329,8 @@ void SamplerIntegrator::Render(const Scene &scene) {
             // Merge image tile into _Film_
             camera->film->MergeFilmTile(std::move(filmTile));
             reporter.Update();
-        }, nTiles);
+            },
+            nTiles, camera->film);
         reporter.Done();
     }
     LOG(INFO) << "Rendering finished";

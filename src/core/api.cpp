@@ -47,6 +47,8 @@
 #include "cameras/orthographic.h"
 #include "cameras/perspective.h"
 #include "cameras/realistic.h"
+#include "films/filefilm.h"
+#include "films/openglfilm.h"
 #include "filters/box.h"
 #include "filters/gaussian.h"
 #include "filters/mitchell.h"
@@ -860,7 +862,9 @@ Film *MakeFilm(const std::string &name, const ParamSet &paramSet,
                std::unique_ptr<Filter> filter) {
     Film *film = nullptr;
     if (name == "image")
-        film = CreateFilm(paramSet, std::move(filter));
+        film = CreateFileFilm(paramSet, std::move(filter));
+    else if (name == "opengl")
+        film = CreateOpenGLFilm(paramSet, std::move(filter));
     else
         Warning("Film \"%s\" unknown.", name.c_str());
     paramSet.ReportUnused();

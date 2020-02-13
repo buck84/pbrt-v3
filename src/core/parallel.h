@@ -101,7 +101,8 @@ class Barrier {
 void ParallelFor(std::function<void(int64_t)> func, int64_t count,
                  int chunkSize = 1);
 extern PBRT_THREAD_LOCAL int ThreadIndex;
-void ParallelFor2D(std::function<void(Point2i)> func, const Point2i &count);
+void ParallelFor2D(std::function<void(Point2i)> func, const Point2i &count,
+                   Film *film=0);
 int MaxThreadIndex();
 int NumSystemCores();
 

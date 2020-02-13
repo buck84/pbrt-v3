@@ -38,6 +38,7 @@
 #include <list>
 #include <thread>
 #include <condition_variable>
+#include "film.h"
 
 namespace pbrt {
 
@@ -244,12 +245,16 @@ int MaxThreadIndex() {
     return PbrtOptions.nThreads == 0 ? NumSystemCores() : PbrtOptions.nThreads;
 }
 
-void ParallelFor2D(std::function<void(Point2i)> func, const Point2i &count) {
+void ParallelFor2D(std::function<void(Point2i)> func, const Point2i &count,
+                   Film *film) {
     CHECK(threads.size() > 0 || MaxThreadIndex() == 1);
 
     if (threads.empty() || count.x * count.y <= 1) {
         for (int y = 0; y < count.y; ++y)
-            for (int x = 0; x < count.x; ++x) func(Point2i(x, y));
+            for (int x = 0; x < count.x; ++x) {
+                func(Point2i(x, y));
+                if (film) film->ShowImage();
+            }
         return;
     }
 
@@ -290,6 +295,7 @@ void ParallelFor2D(std::function<void(Point2i)> func, const Point2i &count) {
                 loop.func2D(Point2i(index % loop.nX, index / loop.nX));
             }
             ProfilerState = oldState;
+            if (film) film->ShowImage();
         }
         lock.lock();
 

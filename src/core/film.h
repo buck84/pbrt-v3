@@ -68,7 +68,8 @@ class Film {
     void MergeFilmTile(std::unique_ptr<FilmTile> tile);
     void SetImage(const Spectrum *img) const;
     void AddSplat(const Point2f &p, Spectrum v);
-    void WriteImage(Float splatScale = 1);
+    virtual void ShowImage() {}
+    virtual void WriteImage(Float splatScale = 1);
     void Clear();
 
     // Film Public Data
@@ -78,7 +79,7 @@ class Film {
     const std::string filename;
     Bounds2i croppedPixelBounds;
 
-  private:
+  protected:
     // Film Private Data
     struct Pixel {
         Pixel() { xyz[0] = xyz[1] = xyz[2] = filterWeightSum = 0; }
